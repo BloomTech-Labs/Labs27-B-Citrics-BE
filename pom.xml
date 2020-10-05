@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lambdaschool</groupId>
-    <artifactId>usermodel</artifactId>
+    <artifactId>foundation</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>foundation</name>
     <description>Demo project for Spring Boot</description>
@@ -117,7 +117,7 @@
     </dependencies>
 
     <build>
-        <finalName>jrmmba-stumps</finalName>
+        <finalName>labs27-b-citrics-api</finalName>
 
         <plugins>
             <plugin>
