@@ -11,7 +11,7 @@
     <groupId>com.lambdaschool</groupId>
     <artifactId>foundation</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>labs27-b-citrics-api</name>
+    <name>foundation</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
