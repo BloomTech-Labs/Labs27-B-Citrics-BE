@@ -2,7 +2,7 @@ package com.lambdaschool.foundation.services;
 
 
 import com.lambdaschool.foundation.exceptions.ResourceNotFoundException;
-import com.lambdaschool.foundation.models.City;
+import com.lambdaschool.foundation.models.*;
 import com.lambdaschool.foundation.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +30,24 @@ public class CityServiceImpl implements CityService
     }
 
     @Override
+    public City save(City city) {
+        City newCity = new City();
+
+        if (city.getCityid() != 0)
+        {
+            cityRepo.findById(city.getCityid())
+                    .orElseThrow(() -> new ResourceNotFoundException("User id " + city.getCityid() + " not found!"));
+            newCity.setCityid(city.getCityid());
+        }
+
+        newCity.setCityName(city.getCityName());
+        newCity.setZipcode(city.getZipcode());
+        newCity.setState((city.getState()));
+
+        return cityRepo.save(newCity);
+    }
+
+    @Override
     public City findCityById(long id)throws
             ResourceNotFoundException
     {
@@ -38,20 +56,20 @@ public class CityServiceImpl implements CityService
     }
 
     @Override
-    public City findByName(String name)
+    public City findByCityName(String name)
     {
-        return null;
+        return cityRepo.findByCityName(name);
     }
 
     @Override
     public List<City> findByCityNameContaining(String cityname)
     {
-        return null;
+        return cityRepo.findByCityNameContaining(cityname);
     }
 
     @Override
-    public List<City> findByStateNameContaining(String state)
+    public List<City> findByStateContaining(String state)
     {
-        return null;
+        return cityRepo.findByStateContaining(state);
     }
 }

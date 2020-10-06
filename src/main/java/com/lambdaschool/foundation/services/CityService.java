@@ -9,12 +9,14 @@ public interface CityService
 {
     List<City> findAll();
 
+    City save(City city);
 
     City findCityById(long id);
 
-    City findByName(String name);
+    City findByCityName(String name);
 
     List<City> findByCityNameContaining(String cityname);
-    List<City> findByStateNameContaining(String state);
+
+    List<City> findByStateContaining(String state);
 
 }
