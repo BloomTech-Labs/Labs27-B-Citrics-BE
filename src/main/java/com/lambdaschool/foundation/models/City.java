@@ -1,8 +1,12 @@
 package com.lambdaschool.foundation.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cities")
@@ -22,6 +26,13 @@ public class City extends Auditable
     @NotNull
     @Column(unique = true)
     private String zipcode;
+
+    @OneToMany(mappedBy = "metrics",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @JsonIgnoreProperties(value = "metrics",
+            allowSetters = true)
+    private List<Metric> metrics = new ArrayList<>();
 
 
     public City()
@@ -76,4 +87,16 @@ public class City extends Auditable
     {
         this.zipcode = zipcode;
     }
+
+    public List<Metric> getMetrics()
+    {
+        return metrics;
+    }
+
+    public void setMetrics(List<Metric> metrics)
+    {
+        this.metrics = metrics;
+    }
+
+
 }
