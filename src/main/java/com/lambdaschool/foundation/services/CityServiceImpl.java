@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service(value = "cityService")
+@Service(value = "CityService")
 public class CityServiceImpl implements CityService
 {
 
@@ -38,13 +38,13 @@ public class CityServiceImpl implements CityService
     }
 
     @Override
-    public City findByName(String name)
+    public City findByName(String cityName)
     {
         return null;
     }
 
     @Override
-    public List<City> findByCityNameContaining(String cityname)
+    public List<City> findByCityNameContaining(String cityName)
     {
         return null;
     }

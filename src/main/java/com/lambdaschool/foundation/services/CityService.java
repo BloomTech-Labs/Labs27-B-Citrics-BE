@@ -12,7 +12,7 @@ public interface CityService
 
     City findCityById(long id);
 
-    City findByName(String name);
+    City findByName(String cityName);
 
     List<City> findByCityNameContaining(String cityname);
     List<City> findByStateNameContaining(String state);
