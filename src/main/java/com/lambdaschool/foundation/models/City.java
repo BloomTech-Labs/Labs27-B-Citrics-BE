@@ -17,12 +17,11 @@ public class City extends Auditable
     private String cityName;
 
     @NotNull
-    @Column(unique = true)
     private String state;
 
     @NotNull
     @Column(unique = true)
-    private long zipcode;
+    private String zipcode;
 
 
     public City()
@@ -30,9 +29,8 @@ public class City extends Auditable
     }
 
 
-    public City( @NotNull String cityName, @NotNull String state, @NotNull long zipcode)
+    public City( @NotNull String cityName, @NotNull String state, @NotNull String zipcode)
     {
-
         this.cityName = cityName;
         this.state = state;
         this.zipcode = zipcode;
@@ -69,12 +67,12 @@ public class City extends Auditable
         this.state = state;
     }
 
-    public long getZipcode()
+    public String getZipcode()
     {
         return zipcode;
     }
 
-    public void setZipcode(long zipcode)
+    public void setZipcode(String zipcode)
     {
         this.zipcode = zipcode;
     }

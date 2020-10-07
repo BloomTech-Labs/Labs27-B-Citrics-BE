@@ -1,12 +1,19 @@
 package com.lambdaschool.foundation;
 
+import com.github.javafaker.Faker;
+import com.lambdaschool.foundation.models.City;
 import com.lambdaschool.foundation.models.Role;
+import com.lambdaschool.foundation.services.CityService;
 import com.lambdaschool.foundation.services.RoleService;
 import com.lambdaschool.foundation.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * SeedData puts both known and random data into the database. It implements CommandLineRunner.
@@ -17,8 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Component
 public class SeedData
-    implements CommandLineRunner
-{
+        implements CommandLineRunner {
     /**
      * Connects the Role Service to this process
      */
@@ -31,6 +37,9 @@ public class SeedData
     @Autowired
     UserService userService;
 
+    @Autowired
+    CityService cityService;
+
     /**
      * Generates test, seed data for our application
      * First a set of known data is seeded into our database.
@@ -40,11 +49,11 @@ public class SeedData
      *
      * @param args The parameter is required by the parent interface but is not used in this process.
      */
+
     @Transactional
     @Override
     public void run(String[] args) throws
-                                   Exception
-    {
+            Exception {
         roleService.deleteAll();
         Role r1 = new Role("admin");
         Role r2 = new Role("user");
@@ -78,5 +87,19 @@ public class SeedData
 
         userService.save(u1);
         */
+
+        // Creating random cities for dummy data
+        Faker dummyData = new Faker(new Locale("en-US"));
+        List<City> dummyCities = new ArrayList<>();
+        for (int i = 0; i < 15; i++) {
+            String state = dummyData.address().stateAbbr();
+            dummyCities.add(new City(dummyData.address().cityName(),
+                    state,
+                    dummyData.address().zipCodeByState(state)));
+        }
+
+        for (City city : dummyCities){
+            cityService.save(city);
+        }
     }
 }
