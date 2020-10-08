@@ -29,8 +29,9 @@ public class User
     /**
      * The username (String). Cannot be null and must be unique
      */
-    @NotNull
+
     @Column(unique = true)
+    @NotNull
     private String username;
 
     /**

@@ -7,9 +7,13 @@ import java.util.List;
 
 public interface CityRepository extends CrudRepository<City, Long>
 {
-    City findByName(String name);
 
-    List<City> findByCityNameContaining(String cityname);
+    City findByCityName(String name);
 
-    List<City> findByStateNameContaining(String state);
+
+    List<City> findByCityNameContaining(String cityName);
+
+
+    List<City> findByStateContaining(String state);
+
 }

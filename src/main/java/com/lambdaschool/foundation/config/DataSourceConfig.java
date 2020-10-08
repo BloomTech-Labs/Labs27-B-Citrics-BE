@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 /**
  * Configures which database we are using based on a property in application.properties
  */
-@Configuration
+//@Configuration
 public class DataSourceConfig
 {
     /**
