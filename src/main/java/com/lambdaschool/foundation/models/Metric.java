@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "metrics")
+@Table(name = "metric")
 public class Metric extends Auditable
 {
     @Id
@@ -24,7 +24,7 @@ public class Metric extends Auditable
     @ManyToOne
     @NotNull
     @JoinColumn(name = "cityid")
-    @JsonIgnoreProperties(value = "mertics",
+    @JsonIgnoreProperties(value = "metric",
             allowSetters = true)
     private City city;
 

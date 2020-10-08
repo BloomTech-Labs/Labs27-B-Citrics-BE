@@ -27,12 +27,12 @@ public class City extends Auditable
     @Column(unique = true)
     private String zipcode;
 
-    @OneToMany(mappedBy = "metrics",
+    @OneToMany(mappedBy = "city",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    @JsonIgnoreProperties(value = "metrics",
+    @JsonIgnoreProperties(value = "metric",
             allowSetters = true)
-    private List<Metric> metrics = new ArrayList<>();
+    private List<Metric> metric = new ArrayList<>();
 
 
     public City()
@@ -40,13 +40,13 @@ public class City extends Auditable
     }
 
 
-    public City( @NotNull String cityName, @NotNull String state, @NotNull String zipcode)
+    public City(@NotNull String cityName, @NotNull String state, @NotNull String zipcode)
     {
         this.cityName = cityName;
         this.state = state;
         this.zipcode = zipcode;
-    }
 
+    }
 
     public long getCityid()
     {
@@ -88,14 +88,14 @@ public class City extends Auditable
         this.zipcode = zipcode;
     }
 
-    public List<Metric> getMetrics()
+    public List<Metric> getMetric()
     {
-        return metrics;
+        return metric;
     }
 
-    public void setMetrics(List<Metric> metrics)
+    public void setMetrics(List<Metric> metric)
     {
-        this.metrics = metrics;
+        this.metric = metric;
     }
 
 
