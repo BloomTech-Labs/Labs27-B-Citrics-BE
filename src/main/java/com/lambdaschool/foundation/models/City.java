@@ -30,7 +30,7 @@ public class City extends Auditable
     @OneToMany(mappedBy = "city",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    @JsonIgnoreProperties(value = "metric",
+    @JsonIgnoreProperties(value = "city",
             allowSetters = true)
     private List<Metric> metric = new ArrayList<>();
 

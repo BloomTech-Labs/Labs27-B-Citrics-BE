@@ -25,4 +25,10 @@ public class MetricServiceImpl implements MetricService
                 .forEachRemaining(list::add);
         return list;
     }
+
+    // TODO
+    @Override
+    public Metric save(Metric metric) {
+        return metricRepository.save(metric);
+    }
 }

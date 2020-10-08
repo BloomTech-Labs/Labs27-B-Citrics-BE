@@ -2,8 +2,10 @@ package com.lambdaschool.foundation;
 
 import com.github.javafaker.Faker;
 import com.lambdaschool.foundation.models.City;
+import com.lambdaschool.foundation.models.Metric;
 import com.lambdaschool.foundation.models.Role;
 import com.lambdaschool.foundation.services.CityService;
+import com.lambdaschool.foundation.services.MetricService;
 import com.lambdaschool.foundation.services.RoleService;
 import com.lambdaschool.foundation.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,6 +42,9 @@ public class SeedData
 
     @Autowired
     CityService cityService;
+
+    @Autowired
+    MetricService metricService;
 
     /**
      * Generates test, seed data for our application
@@ -91,11 +97,18 @@ public class SeedData
         // Creating random cities for dummy data
         Faker dummyData = new Faker(new Locale("en-US"));
         List<City> dummyCities = new ArrayList<>();
+        List<Metric> dummyMetrics = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
             String state = dummyData.address().stateAbbr();
-            dummyCities.add(new City(dummyData.address().cityName(),
+            City city = new City(dummyData.address().cityName(),
                     state,
-                    dummyData.address().zipCodeByState(state)));
+                    dummyData.address().zipCodeByState(state));
+            Metric metric = new Metric(dummyData.number().numberBetween(2000, 300000000),
+                    dummyData.number().randomDigitNotZero(),
+                    city);
+            city.getMetric().add(metric);
+            dummyMetrics.add(metric);
+            dummyCities.add(city);
         }
 
         for (City city : dummyCities){
