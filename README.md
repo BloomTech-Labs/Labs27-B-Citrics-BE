@@ -14,11 +14,13 @@ The table layout is similar to the initial version with the following exceptions
 
 Thus the new table layout is as follows
 
-* User is the driving table.
+* User and City are the driving tables.
 * Useremails have a Many-To-One relationship with User. Each User has many user email combinations. Each user email combination has only one User.
 * Roles have a Many-To-Many relationship with Users.
+* User has a One-to-One relationship with UserMetrics.
+* City has a One-to-Many relationship with Metrics.
 
-![Image of Database Layout](usersfinaldb.png)
+![Image of Database Layout](Citrics_DB_V1.png)
 
 Using the provided seed data, expand each endpoint below to see the output it generates.
 
