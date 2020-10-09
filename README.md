@@ -973,47 +973,6 @@ Status OK
 </details>
 
 <details>
-<summary>http://localhost:2019/users/user/name/cinabun</summary>
-
-</details>
-
-```JSON
-{
-    "userid": 7,
-    "username": "cinabun",
-    "primaryemail": "cinabun@lambdaschool.home",
-    "useremails": [
-        {
-            "useremailid": 21,
-            "useremail": "cinnamon@mymail.home"
-        },
-        {
-            "useremailid": 22,
-            "useremail": "hops@mymail.home"
-        },
-        {
-            "useremailid": 23,
-            "useremail": "bunny@email.home"
-        }
-    ],
-    "roles": [
-        {
-            "role": {
-                "roleid": 2,
-                "name": "USER"
-            }
-        },
-        {
-            "role": {
-                "roleid": 3,
-                "name": "DATA"
-            }
-        }
-    ]
-}
-```
-
-<details>
 
 <summary>DELETE http://localhost:2019/users/user/14</summary>
 
