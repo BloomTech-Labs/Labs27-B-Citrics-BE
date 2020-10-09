@@ -48,9 +48,7 @@ public class CityServiceImpl implements CityService
     }
 
     @Override
-    public City findCityById(long id)throws
-            ResourceNotFoundException
-    {
+    public City findCityById(Long id) {
         return cityRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("City " + id + " not found!"));
     }

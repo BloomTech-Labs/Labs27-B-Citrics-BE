@@ -22,7 +22,6 @@ public class Metric extends Auditable
     private  long crimeRate;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "cityid")
     @JsonIgnoreProperties(value = "metric",
             allowSetters = true)
@@ -33,7 +32,7 @@ public class Metric extends Auditable
     }
 
 
-    public Metric(@NotNull long population, @NotNull long crimeRate, @NotNull City city)
+    public Metric(@NotNull long population, @NotNull long crimeRate, City city)
     {
         this.population = population;
         this.crimeRate = crimeRate;
