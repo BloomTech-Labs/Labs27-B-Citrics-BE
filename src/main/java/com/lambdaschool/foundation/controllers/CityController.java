@@ -54,7 +54,8 @@ public class CityController {
     @PreAuthorize("permitAll()")
     @GetMapping(value = "/cities/state/{state}", produces = "application/json")
     public ResponseEntity<?> findByState(@PathVariable String state){
-        List<City> cities = cityService.findByStateContaining(state);
+        String stateUpper = state.toUpperCase();
+        List<City> cities = cityService.findByStateContaining(stateUpper);
 
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
