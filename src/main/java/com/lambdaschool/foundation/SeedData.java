@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -103,16 +102,23 @@ public class SeedData
             City city = new City(dummyData.address().cityName(),
                     state,
                     dummyData.address().zipCodeByState(state));
-            Metric metric = new Metric(dummyData.number().numberBetween(2000, 300000000),
-                    dummyData.number().randomDigitNotZero(),
-                    city);
-            city.getMetric().add(metric);
-            dummyMetrics.add(metric);
             dummyCities.add(city);
         }
 
         for (City city : dummyCities){
             cityService.save(city);
         }
+
+//        for(int i = 0; i < 15; i++){
+//            Metric metric = new Metric(dummyData.number().numberBetween(2000, 300000000),
+//                    dummyData.number().randomDigitNotZero(),
+//                    dummyCities.get(0));
+//            System.out.println(dummyCities.get(0));
+//            dummyMetrics.add(metric);
+//        }
+//
+//        for (Metric metric : dummyMetrics){
+//            metricService.save(metric);
+//        }
     }
 }

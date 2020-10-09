@@ -10,7 +10,7 @@ public interface CityService
 
     City save(City city);
 
-    City findCityById(long id);
+    City findCityById(Long id);
 
     City findByCityName(String name);
 
