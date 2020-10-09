@@ -1,8 +1,8 @@
-# Java User Model Final Version / Exceptions Final Application / Security Initial Application
+# Citrics | Java Spring Back End 
 
 ## Introduction
 
-This is a basic database scheme with users, user emails, and user roles. This Java Spring REST API application will provide endpoints for clients to read various data sets contained in the application's data. This application will also form the basis of a user authentication application developed elsewhere in the course
+This is a database scheme with users, user emails, user roles, cities, metrics, and user metrics.
 
 ### Database layout
 
