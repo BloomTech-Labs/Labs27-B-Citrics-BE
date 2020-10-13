@@ -17,7 +17,7 @@ public class CityMetric
     @ManyToOne
     @NotNull
     @JoinColumn(name = "cityid")
-    @JsonIgnoreProperties(value = "metric",
+    @JsonIgnoreProperties(value = "cityMetrics",
             allowSetters = true)
     private City city;
 
@@ -25,7 +25,7 @@ public class CityMetric
     @ManyToOne
     @NotNull
     @JoinColumn(name = "metricid")
-    @JsonIgnoreProperties(value = "city",
+    @JsonIgnoreProperties(value = "cityMetrics",
             allowSetters = true)
     private Metric metric;
 
