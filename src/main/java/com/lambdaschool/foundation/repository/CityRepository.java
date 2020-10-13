@@ -10,10 +10,7 @@ public interface CityRepository extends CrudRepository<City, Long>
 
     City findByCityName(String name);
 
+//    City findByStateName(String state);
 
-    List<City> findByCityNameContaining(String cityName);
-
-
-    List<City> findByStateContaining(String state);
 
 }

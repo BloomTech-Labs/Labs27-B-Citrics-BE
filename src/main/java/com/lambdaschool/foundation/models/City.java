@@ -6,46 +6,60 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "cities")
+@Table(name = "city")
 public class City extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long cityid;
 
-    @NotNull
-    @Column(unique = true)
+
+//    @Column(unique = true)
     private String cityName;
 
-    @NotNull
+
+//    @Column(unique = true)
     private String state;
 
-    @NotNull
-    @Column(unique = true)
+
+//    @Column(unique = true)
+    private double lat;
+
+
+//    @Column(unique = true)
+    private double lon;
+
+
+//    @Column(unique = true)
     private String zipcode;
+
 
     @OneToMany(mappedBy = "city",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JsonIgnoreProperties(value = "city",
             allowSetters = true)
-    private List<Metric> metric = new ArrayList<>();
+    private Set<CityMetric> cityMetrics = new HashSet<>();
+
+
 
 
     public City()
     {
     }
 
-
-    public City(@NotNull String cityName, @NotNull String state, @NotNull String zipcode)
+    public City(String cityName, String state, double lat, double lon, String zipcode)
     {
         this.cityName = cityName;
         this.state = state;
+        this.lat = lat;
+        this.lon = lon;
         this.zipcode = zipcode;
-
     }
 
     public long getCityid()
@@ -88,15 +102,34 @@ public class City extends Auditable
         this.zipcode = zipcode;
     }
 
-    public List<Metric> getMetric()
+
+    public double getLat()
     {
-        return metric;
+        return lat;
     }
 
-    public void setMetrics(List<Metric> metric)
+    public void setLat(double lat)
     {
-        this.metric = metric;
+        this.lat = lat;
     }
 
+    public double getLon()
+    {
+        return lon;
+    }
 
+    public void setLon(double lon)
+    {
+        this.lon = lon;
+    }
+
+    public Set<CityMetric> getCityMetrics()
+    {
+        return cityMetrics;
+    }
+
+    public void setCityMetrics(Set<CityMetric> cityMetrics)
+    {
+        this.cityMetrics = cityMetrics;
+    }
 }

@@ -17,6 +17,9 @@ public class CityServiceImpl implements CityService
     @Autowired
     private CityRepository cityRepo;
 
+    @Autowired
+    private MetricService metricService;
+
     @Override
     public List<City> findAll()
     {
@@ -43,6 +46,19 @@ public class CityServiceImpl implements CityService
         newCity.setCityName(city.getCityName());
         newCity.setZipcode(city.getZipcode());
         newCity.setState((city.getState()));
+        newCity.setLat(city.getLat());
+        newCity.setLat(city.getLon());
+
+
+        for (CityMetric cm : city.getCityMetrics())
+        {
+            Metric addMetric = metricService.findById(cm.getMetric()
+                    .getMetricid());
+
+            newCity.getCityMetrics()
+                    .add(new CityMetric(newCity, addMetric, cm.getScore()));
+        }
+
 
         return cityRepo.save(newCity);
     }
@@ -59,17 +75,10 @@ public class CityServiceImpl implements CityService
         return cityRepo.findByCityName(name);
     }
 
-    @Override
-    public List<City> findByCityNameContaining(String cityName)
-    {
-        return cityRepo.findByCityNameContaining(cityName);
-    }
 
-    @Override
-    public List<City> findByStateContaining(String state)
-    {
-        return cityRepo.findByStateContaining(state);
-    }
-
-
+//    @Override
+//    public City findByStateName(String state)
+//    {
+//        return  cityRepo.findByStateName(state);
+//    }
 }

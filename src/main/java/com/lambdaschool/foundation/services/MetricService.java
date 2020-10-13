@@ -7,5 +7,9 @@ import java.util.List;
 public interface MetricService
 {
     List<Metric> findall();
+
     Metric save(Metric metric);
+
+    Metric findById(Long id);
+
 }
