@@ -42,21 +42,36 @@ public class CityController {
 
         return new ResponseEntity<>(city, HttpStatus.OK);
     }
-//
-//    @PreAuthorize("permitAll()")
-//    @GetMapping(value = "/cities/namelike/{namelike}", produces = "application/json")
-//    public ResponseEntity<?> findByNameLike(@PathVariable String namelike){
-//        List<City> cities = cityService.findByCityNameContaining(namelike);
-//
-//        return new ResponseEntity<>(cities, HttpStatus.OK);
-//    }
-//
-//    @PreAuthorize("permitAll()")
-//    @GetMapping(value = "/cities/state/{state}", produces = "application/json")
-//    public ResponseEntity<?> findByState(@PathVariable String state){
-//        String stateUpper = state.toUpperCase();
-//        List<City> cities = cityService.findByStateContaining(stateUpper);
-//
-//        return new ResponseEntity<>(cities, HttpStatus.OK);
-//    }
+
+    @PreAuthorize("permitAll()")
+    @GetMapping(value = "/cities/namelike/{namelike}", produces = "application/json")
+    public ResponseEntity<?> findByNameLike(@PathVariable String namelike){
+        List<City> cities = cityService.findByCityNameContaining(namelike);
+
+        return new ResponseEntity<>(cities, HttpStatus.OK);
+    }
+
+    @PreAuthorize("permitAll()")
+    @GetMapping(value = "/cities/state/{state}", produces = "application/json")
+    public ResponseEntity<?> findByState(@PathVariable String state){
+        String stateUpper = state.toUpperCase();
+        List<City> cities = cityService.findByStateContaining(stateUpper);
+
+        return new ResponseEntity<>(cities, HttpStatus.OK);
+    }
+
+
+    // find by lat and long
+
+    @PreAuthorize("permitAll()")
+    @GetMapping(value = "/coordinates/{lat}/{lng}", produces = "application/json")
+    public ResponseEntity<?> findByLatLong(@PathVariable Double lat, @PathVariable Double lng)
+    {
+        City city = cityService.findByLatandLong(lat, lng);
+        return new ResponseEntity<>(city, HttpStatus.OK);
+    }
+
+
+    // STRETCH
+        // user prefernces
 }
