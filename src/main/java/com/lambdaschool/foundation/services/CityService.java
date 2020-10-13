@@ -14,8 +14,8 @@ public interface CityService
 
     City findByCityName(String name);
 
-    List<City> findByCityNameContaining(String cityName);
+//    City findByStateName(String state);
 
-    List<City> findByStateContaining(String state);
+
 
 }

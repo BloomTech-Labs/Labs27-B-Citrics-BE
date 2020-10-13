@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "metric")
@@ -13,30 +15,31 @@ public class Metric extends Auditable
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long metricid;
 
-    @NotNull
-    @Column(unique = true)
-    private long population;
+//    @NotNull
+//    @Column(unique = true)
+    private String label;
 
-    @NotNull
-    @Column(unique = true)
-    private  long crimeRate;
+//    @NotNull
+//    @Column(unique = true)
+    private String scoreType;
 
-    @ManyToOne
-    @JoinColumn(name = "cityid")
+    @OneToMany(mappedBy = "metric",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     @JsonIgnoreProperties(value = "metric",
             allowSetters = true)
-    private City city;
+    private Set<CityMetric> cityMetrics = new HashSet<>();
+
+
 
     public Metric()
     {
     }
 
-
-    public Metric(@NotNull long population, @NotNull long crimeRate, City city)
+    public Metric(@NotNull String label, @NotNull String scoreType)
     {
-        this.population = population;
-        this.crimeRate = crimeRate;
-        this.city = city;
+        this.label = label;
+        this.scoreType = scoreType;
     }
 
     public long getMetricid()
@@ -49,33 +52,33 @@ public class Metric extends Auditable
         this.metricid = metricid;
     }
 
-    public long getPopulation()
+    public String getLabel()
     {
-        return population;
+        return label;
     }
 
-    public void setPopulation(long population)
+    public void setLabel(String label)
     {
-        this.population = population;
+        this.label = label;
     }
 
-    public long getCrimeRate()
+    public String getScoreType()
     {
-        return crimeRate;
+        return scoreType;
     }
 
-    public void setCrimeRate(long crimeRate)
+    public void setScoreType(String scoreType)
     {
-        this.crimeRate = crimeRate;
+        this.scoreType = scoreType;
     }
 
-    public City getCity()
+    public Set<CityMetric> getCityMetrics()
     {
-        return city;
+        return cityMetrics;
     }
 
-    public void setCity(City city)
+    public void setCityMetrics(Set<CityMetric> cityMetrics)
     {
-        this.city = city;
+        this.cityMetrics = cityMetrics;
     }
 }
