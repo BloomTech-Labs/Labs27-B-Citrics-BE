@@ -64,10 +64,10 @@ public class CityController {
     // find by lat and long
 
     @PreAuthorize("permitAll()")
-    @GetMapping(value = "/coordinates/{lat}/{lng}", produces = "application/json")
-    public ResponseEntity<?> findByLatLong(@PathVariable Double lat, @PathVariable Double lng)
+    @GetMapping(value = "/coordinates/{lat}/{lon}", produces = "application/json")
+    public ResponseEntity<?> findByLatLong(@PathVariable Double lat, @PathVariable Double lon)
     {
-        City city = cityService.findByLatandLong(lat, lng);
+        City city = cityService.findByLatandLon(lat, lon);
         return new ResponseEntity<>(city, HttpStatus.OK);
     }
 

@@ -17,6 +17,6 @@ public interface CityRepository extends CrudRepository<City, Long>
     List<City> findByStateContaining(String state);
 
 
-    City findByLatandLong(Double lat, Double lng);
+    City findByLatAndLon(double lat, double lon);
 
 }

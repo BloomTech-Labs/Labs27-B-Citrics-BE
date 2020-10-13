@@ -18,6 +18,6 @@ public interface CityService
 
     List<City> findByStateContaining(String state);
 
-    City findByLatandLong(Double lat, Double lng);
+    City findByLatandLon(double lat, double lon);
 
 }

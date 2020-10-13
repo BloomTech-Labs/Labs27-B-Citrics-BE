@@ -90,8 +90,8 @@ public class CityServiceImpl implements CityService
     }
 
     @Override
-    public City findByLatandLong(Double lat, Double lng)
+    public City findByLatandLon(double lat, double lon)
     {
-        return cityRepo.findByLatandLong(lat, lng);
+        return cityRepo.findByLatAndLon(lat, lon);
     }
 }
