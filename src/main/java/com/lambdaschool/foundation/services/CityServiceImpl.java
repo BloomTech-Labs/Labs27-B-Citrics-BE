@@ -33,7 +33,8 @@ public class CityServiceImpl implements CityService
     }
 
     @Override
-    public City save(City city) {
+    public City save(City city)
+    {
         City newCity = new City();
 
         if (city.getCityid() != 0)
@@ -64,7 +65,8 @@ public class CityServiceImpl implements CityService
     }
 
     @Override
-    public City findCityById(Long id) {
+    public City findCityById(Long id)
+    {
         return cityRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("City " + id + " not found!"));
     }
@@ -75,10 +77,21 @@ public class CityServiceImpl implements CityService
         return cityRepo.findByCityName(name);
     }
 
+    @Override
+    public List<City> findByCityNameContaining(String cityName)
+    {
+        return cityRepo.findByCityNameContaining(cityName);
+    }
 
-//    @Override
-//    public City findByStateName(String state)
-//    {
-//        return  cityRepo.findByStateName(state);
-//    }
+    @Override
+    public List<City> findByStateContaining(String state)
+    {
+        return cityRepo.findByStateContaining(state);
+    }
+
+    @Override
+    public City findByLatandLon(double lat, double lon)
+    {
+        return cityRepo.findByLatAndLon(lat, lon);
+    }
 }

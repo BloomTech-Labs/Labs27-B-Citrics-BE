@@ -5,10 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
-@Table(name = "cityMetric")
+@Table(name = "citymetric")
 @IdClass(CityMetricId.class)
 public class CityMetric
         extends Auditable
@@ -18,7 +17,7 @@ public class CityMetric
     @ManyToOne
     @NotNull
     @JoinColumn(name = "cityid")
-    @JsonIgnoreProperties(value = "metric",
+    @JsonIgnoreProperties(value = "cityMetrics",
             allowSetters = true)
     private City city;
 
@@ -26,7 +25,7 @@ public class CityMetric
     @ManyToOne
     @NotNull
     @JoinColumn(name = "metricid")
-    @JsonIgnoreProperties(value = "city",
+    @JsonIgnoreProperties(value = "cityMetrics",
             allowSetters = true)
     private Metric metric;
 

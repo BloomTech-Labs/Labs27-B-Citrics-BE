@@ -14,8 +14,10 @@ public interface CityService
 
     City findByCityName(String name);
 
-//    City findByStateName(String state);
+    List<City> findByCityNameContaining(String cityName);
 
+    List<City> findByStateContaining(String state);
 
+    City findByLatandLon(double lat, double lon);
 
 }

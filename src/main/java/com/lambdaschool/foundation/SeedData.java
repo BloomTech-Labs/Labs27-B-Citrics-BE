@@ -105,7 +105,7 @@ public class SeedData
                     new City(dummyData.address().cityName(), // cityname
                             state, // state
                             Double.parseDouble(dummyData.address().latitude()), // lat
-                            Double.parseDouble(dummyData.address().longitude()),
+                            Double.parseDouble(dummyData.address().longitude()), // long
                             dummyData.address().zipCodeByState(state)); // zip
             dummyCities.add(city);
         }
@@ -124,7 +124,7 @@ public class SeedData
             city.getCityMetrics().add(new CityMetric(city, metric2, dummyData.number().randomDigitNotZero()));
             city.getCityMetrics().add(new CityMetric(city, metric3, dummyData.number().randomDigitNotZero()));
             cityService.save(city);
-//
+
         }
 
     }

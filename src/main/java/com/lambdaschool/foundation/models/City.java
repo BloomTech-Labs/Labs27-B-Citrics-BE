@@ -44,7 +44,7 @@ public class City extends Auditable
             orphanRemoval = true)
     @JsonIgnoreProperties(value = "city",
             allowSetters = true)
-    private Set<CityMetric> cityMetrics = new HashSet<>();
+    private Set<CityMetric> citymetric = new HashSet<>();
 
 
 
@@ -125,11 +125,11 @@ public class City extends Auditable
 
     public Set<CityMetric> getCityMetrics()
     {
-        return cityMetrics;
+        return citymetric;
     }
 
     public void setCityMetrics(Set<CityMetric> cityMetrics)
     {
-        this.cityMetrics = cityMetrics;
+        this.citymetric = cityMetrics;
     }
 }
