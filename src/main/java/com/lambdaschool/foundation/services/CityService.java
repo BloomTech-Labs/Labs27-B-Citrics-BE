@@ -20,4 +20,6 @@ public interface CityService
 
     City findByLatandLon(double lat, double lon);
 
+    City getDS(Long id);
+
 }

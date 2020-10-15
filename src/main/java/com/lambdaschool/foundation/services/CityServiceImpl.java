@@ -5,9 +5,15 @@ import com.lambdaschool.foundation.exceptions.ResourceNotFoundException;
 import com.lambdaschool.foundation.models.*;
 import com.lambdaschool.foundation.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service(value = "CityService")
@@ -16,9 +22,6 @@ public class CityServiceImpl implements CityService
 
     @Autowired
     private CityRepository cityRepo;
-
-    @Autowired
-    private MetricService metricService;
 
     @Override
     public List<City> findAll()
@@ -45,20 +48,15 @@ public class CityServiceImpl implements CityService
         }
 
         newCity.setCityName(city.getCityName());
-        newCity.setZipcode(city.getZipcode());
         newCity.setState((city.getState()));
         newCity.setLat(city.getLat());
         newCity.setLat(city.getLon());
-
-
-        for (CityMetric cm : city.getCityMetrics())
-        {
-            Metric addMetric = metricService.findById(cm.getMetric()
-                    .getMetricid());
-
-            newCity.getCityMetrics()
-                    .add(new CityMetric(newCity, addMetric, cm.getScore()));
-        }
+        newCity.setMedian_age(city.getMedian_age());
+        newCity.setMedian_home_cost(city.getMedian_home_cost());
+        newCity.setMedian_household_income(city.getMedian_household_income());
+        newCity.setMedian_individual_income(city.getMedian_individual_income());
+        newCity.setPopulation(city.getPopulation());
+        newCity.setMedian_rent(city.getMedian_rent());
 
 
         return cityRepo.save(newCity);
@@ -93,5 +91,43 @@ public class CityServiceImpl implements CityService
     public City findByLatandLon(double lat, double lon)
     {
         return cityRepo.findByLatAndLon(lat, lon);
+    }
+
+    @Override
+    public City getDS(Long id)
+    {
+
+        String api = "http://citrics-ds.eba-jvvvymfn.us-east-1.elasticbeanstalk.com/";
+        String requestLong = api + id;
+
+        City newCity = new City();
+
+        RestTemplate restTemplate = new RestTemplate();
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+        restTemplate.getMessageConverters().add(converter);
+
+        ParameterizedTypeReference<DsApi> responsetype = new ParameterizedTypeReference<>()
+        {
+        };
+
+        DsApi entity = restTemplate.getForObject(requestLong, DsApi.class);
+
+        String[] cityName = entity.getCity().split(",");
+
+        newCity.setCityid(entity.getCity_id());
+        newCity.setCityName(cityName[0]);
+        newCity.setState(cityName[1]);
+        newCity.setCost_of_Living_Index(entity.getCost_of_Living_Index());
+        newCity.setMedian_age(entity.getMedian_age());
+        newCity.setMedian_home_cost(entity.getMedian_home_cost());
+        newCity.setMedian_household_income(entity.getMedian_household_income());
+        newCity.setMedian_individual_income(entity.getMedian_individual_income());
+        newCity.setPopulation(entity.getPopulation());
+        newCity.setMedian_rent(entity.getMedian_rent());
+
+
+        return newCity;
+
     }
 }

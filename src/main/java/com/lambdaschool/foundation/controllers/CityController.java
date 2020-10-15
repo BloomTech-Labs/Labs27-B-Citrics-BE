@@ -30,7 +30,7 @@ public class CityController {
     @PreAuthorize("permitAll()")
     @GetMapping(value = "/city/id/{id}", produces = "application/json")
     public ResponseEntity<?> findCityById(@PathVariable Long id){
-        City city = cityService.findCityById(id);
+        City city = cityService.getDS(id);
 
         return new ResponseEntity<>(city, HttpStatus.OK);
     }
