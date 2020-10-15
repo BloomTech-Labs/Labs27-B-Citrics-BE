@@ -3,39 +3,22 @@ package com.lambdaschool.foundation.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-@Entity
-@Table(name = "city")
-public class City extends Auditable
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class DsApi
 {
-    @Id
+//"city_id": 7,
+//  "city": "Oro Valley, Arizona",
+//  "population": 44350,
+//  "median_age": 52.4,
+//  "median_household_income": 85392,
+//  "median_individual_income": 45092,
+//  "median_home_cost": 311829,
+//  "median_rent": 1139,
+//  "Cost-of-Living-Index": 91.3
+
     private long city_id;
 
-
-//    @Column(unique = true)
-    private String cityName;
-
-
-//    @Column(unique = true)
-    private String state;
-
-
-//    @Column(unique = true)
-    private double lat;
-
-
-//    @Column(unique = true)
-    private double lon;
-
-
-
-
+    private String city;
     private long population;
     private double median_age;
     private long median_household_income;
@@ -44,18 +27,13 @@ public class City extends Auditable
     private long median_rent;
     private double Cost_of_Living_Index;
 
-
-    public City()
+    public DsApi()
     {
     }
 
-    public City(long cityid, String cityName, String state, double lat, double lon, String city, long population, double median_age, long median_household_income, long median_individual_income, long median_home_cost, long median_rent, double cost_of_Living_Index)
+    public DsApi( long city_id, String city, long population, double median_age, long median_household_income, long median_individual_income, long median_home_cost, long median_rent, double cost_of_Living_Index)
     {
-        this.city_id = cityid;
-        this.cityName = cityName;
-        this.state = state;
-        this.lat = lat;
-        this.lon = lon;
+        this.city_id = city_id;
         this.population = population;
         this.median_age = median_age;
         this.median_household_income = median_household_income;
@@ -65,57 +43,16 @@ public class City extends Auditable
         this.Cost_of_Living_Index = cost_of_Living_Index;
     }
 
-    public long getCityid()
+
+    public String getCity()
     {
-        return city_id;
+        return city;
     }
 
-    public void setCityid(long cityid)
+    public void setCity(String city)
     {
-        this.city_id = cityid;
+        this.city = city;
     }
-
-    public String getCityName()
-    {
-        return cityName;
-    }
-
-    public void setCityName(String cityName)
-    {
-        this.cityName = cityName;
-    }
-
-    public String getState()
-    {
-        return state;
-    }
-
-    public void setState(String state)
-    {
-        this.state = state;
-    }
-
-
-    public double getLat()
-    {
-        return lat;
-    }
-
-    public void setLat(double lat)
-    {
-        this.lat = lat;
-    }
-
-    public double getLon()
-    {
-        return lon;
-    }
-
-    public void setLon(double lon)
-    {
-        this.lon = lon;
-    }
-
 
     public long getPopulation()
     {
@@ -187,5 +124,13 @@ public class City extends Auditable
         Cost_of_Living_Index = cost_of_Living_Index;
     }
 
+    public long getCity_id()
+    {
+        return city_id;
+    }
 
+    public void setCity_id(long city_id)
+    {
+        this.city_id = city_id;
+    }
 }

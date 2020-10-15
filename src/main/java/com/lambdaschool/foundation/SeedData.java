@@ -2,11 +2,8 @@ package com.lambdaschool.foundation;
 
 import com.github.javafaker.Faker;
 import com.lambdaschool.foundation.models.City;
-import com.lambdaschool.foundation.models.CityMetric;
-import com.lambdaschool.foundation.models.Metric;
 import com.lambdaschool.foundation.models.Role;
 import com.lambdaschool.foundation.services.CityService;
-import com.lambdaschool.foundation.services.MetricService;
 import com.lambdaschool.foundation.services.RoleService;
 import com.lambdaschool.foundation.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -43,9 +39,6 @@ public class SeedData
 
     @Autowired
     CityService cityService;
-
-    @Autowired
-    MetricService metricService;
 
     /**
      * Generates test, seed data for our application
@@ -96,36 +89,36 @@ public class SeedData
         */
 
 //         Creating random cities for dummy data
-        Faker dummyData = new Faker(new Locale("en-US"));
-        List<City> dummyCities = new ArrayList<>();
-        List<Metric> dummyMetrics = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            String state = dummyData.address().stateAbbr();
-            City city =
-                    new City(dummyData.address().cityName(), // cityname
-                            state, // state
-                            Double.parseDouble(dummyData.address().latitude()), // lat
-                            Double.parseDouble(dummyData.address().longitude()), // long
-                            dummyData.address().zipCodeByState(state)); // zip
-            dummyCities.add(city);
-        }
-
-        Metric  metric1 = new Metric("Population", "Number");
-        Metric  metric2 = new Metric("Crime Rate", "Percentage");
-        Metric  metric3 = new Metric("Cost of Living", "Number");
-
-        metric1 = metricService.save(metric1);
-        metric2 = metricService.save(metric2);
-        metric3 = metricService.save(metric3);
-
-
-        for (City city : dummyCities){
-            city.getCityMetrics().add(new CityMetric(city, metric1, dummyData.number().randomDouble(2, 0 , 200000)));
-            city.getCityMetrics().add(new CityMetric(city, metric2, dummyData.number().randomDigitNotZero()));
-            city.getCityMetrics().add(new CityMetric(city, metric3, dummyData.number().randomDigitNotZero()));
-            cityService.save(city);
-
-        }
+//        Faker dummyData = new Faker(new Locale("en-US"));
+//        List<City> dummyCities = new ArrayList<>();
+//        List<Metric> dummyMetrics = new ArrayList<>();
+//        for (int i = 0; i < 15; i++) {
+//            String state = dummyData.address().stateAbbr();
+//            City city =
+//                    new City(dummyData.address().cityName(), // cityname
+//                            state, // state
+//                            Double.parseDouble(dummyData.address().latitude()), // lat
+//                            Double.parseDouble(dummyData.address().longitude()), // long
+//                            dummyData.address().zipCodeByState(state)); // zip
+//            dummyCities.add(city);
+//        }
+//
+//        Metric  metric1 = new Metric("Population", "Number");
+//        Metric  metric2 = new Metric("Crime Rate", "Percentage");
+//        Metric  metric3 = new Metric("Cost of Living", "Number");
+//
+//        metric1 = metricService.save(metric1);
+//        metric2 = metricService.save(metric2);
+//        metric3 = metricService.save(metric3);
+//
+//
+//        for (City city : dummyCities){
+//            city.getCityMetrics().add(new CityMetric(city, metric1, dummyData.number().randomDouble(2, 0 , 200000)));
+//            city.getCityMetrics().add(new CityMetric(city, metric2, dummyData.number().randomDigitNotZero()));
+//            city.getCityMetrics().add(new CityMetric(city, metric3, dummyData.number().randomDigitNotZero()));
+//            cityService.save(city);
+//
+//        }
 
     }
 }
