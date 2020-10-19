@@ -1,67 +1,67 @@
-package com.lambdaschool.foundation;
-
-import com.github.javafaker.Faker;
-import com.lambdaschool.foundation.models.City;
-import com.lambdaschool.foundation.models.Role;
-import com.lambdaschool.foundation.services.CityService;
-import com.lambdaschool.foundation.services.RoleService;
-import com.lambdaschool.foundation.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-/**
- * SeedData puts both known and random data into the database. It implements CommandLineRunner.
- * <p>
- * CoomandLineRunner: Spring Boot automatically runs the run method once and only once
- * after the application context has been loaded.
- */
-@Transactional
-@Component
-public class SeedData
-        implements CommandLineRunner {
-    /**
-     * Connects the Role Service to this process
-     */
-    @Autowired
-    RoleService roleService;
-
-    /**
-     * Connects the user service to this process
-     */
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    CityService cityService;
-
-    /**
-     * Generates test, seed data for our application
-     * First a set of known data is seeded into our database.
-     * Second a random set of data using Java Faker is seeded into our database.
-     * Note this process does not remove data from the database. So if data exists in the database
-     * prior to running this process, that data remains in the database.
-     *
-     * @param args The parameter is required by the parent interface but is not used in this process.
-     */
-
-    @Transactional
-    @Override
-    public void run(String[] args) throws
-            Exception {
-        roleService.deleteAll();
-        Role r1 = new Role("admin");
-        Role r2 = new Role("user");
-        Role r3 = new Role("data");
-
-        r1 = roleService.save(r1);
-        r2 = roleService.save(r2);
-        r3 = roleService.save(r3);
+//package com.lambdaschool.foundation;
+//
+//import com.github.javafaker.Faker;
+//import com.lambdaschool.foundation.models.City;
+//import com.lambdaschool.foundation.models.Role;
+//import com.lambdaschool.foundation.services.CityService;
+//import com.lambdaschool.foundation.services.RoleService;
+//import com.lambdaschool.foundation.services.UserService;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.CommandLineRunner;
+//import org.springframework.stereotype.Component;
+//import org.springframework.transaction.annotation.Transactional;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//import java.util.Locale;
+//
+///**
+// * SeedData puts both known and random data into the database. It implements CommandLineRunner.
+// * <p>
+// * CoomandLineRunner: Spring Boot automatically runs the run method once and only once
+// * after the application context has been loaded.
+// */
+//@Transactional
+//@Component
+//public class SeedData
+//        implements CommandLineRunner {
+//    /**
+//     * Connects the Role Service to this process
+//     */
+//    @Autowired
+//    RoleService roleService;
+//
+//    /**
+//     * Connects the user service to this process
+//     */
+//    @Autowired
+//    UserService userService;
+//
+//    @Autowired
+//    CityService cityService;
+//
+//    /**
+//     * Generates test, seed data for our application
+//     * First a set of known data is seeded into our database.
+//     * Second a random set of data using Java Faker is seeded into our database.
+//     * Note this process does not remove data from the database. So if data exists in the database
+//     * prior to running this process, that data remains in the database.
+//     *
+//     * @param args The parameter is required by the parent interface but is not used in this process.
+//     */
+//
+//    @Transactional
+//    @Override
+//    public void run(String[] args) throws
+//            Exception {
+//        roleService.deleteAll();
+//        Role r1 = new Role("admin");
+//        Role r2 = new Role("user");
+//        Role r3 = new Role("data");
+//
+//        r1 = roleService.save(r1);
+//        r2 = roleService.save(r2);
+//        r3 = roleService.save(r3);
 
         // The following is an example user!
         /*
@@ -120,5 +120,5 @@ public class SeedData
 //
 //        }
 
-    }
-}
+//    }
+//}

@@ -3,20 +3,12 @@ package com.lambdaschool.foundation.repository;
 import com.lambdaschool.foundation.models.City;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
-
 public interface CityRepository extends CrudRepository<City, Long>
 {
-
-    City findByCityName(String name);
-
-
-    List<City> findByCityNameContaining(String cityName);
-
-
-    List<City> findByStateContaining(String state);
-
-
-    City findByLatAndLon(double lat, double lon);
-
+    /**
+     * Finds city by the citynamestate field
+     * @param cityname name of city
+     * @return City matching cityname
+     */
+    City findByCitynamestate(String cityname);
 }

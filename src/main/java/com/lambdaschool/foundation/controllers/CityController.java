@@ -1,11 +1,11 @@
 package com.lambdaschool.foundation.controllers;
 
 import com.lambdaschool.foundation.models.City;
+import com.lambdaschool.foundation.models.CityIdName;
 import com.lambdaschool.foundation.services.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,63 +15,61 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cities")
-public class CityController {
+public class CityController
+{
+    /**
+     * Conenction to city services
+     */
     @Autowired
     private CityService cityService;
 
-    @PreAuthorize("permitAll()")
-    @GetMapping(value = "/cities", produces = "application/json")
-    public ResponseEntity<?> listAllCities(){
-        List<City> cities = cityService.findAll();
+    /**
+     *  /all endpont (Not enough memory in free tier of
+     *  Heroku to use with fully populated DB. Disabled until
+     *  resources are available)
+     * @return list of all cities
+     */
+//    @GetMapping(value = "/all",
+//       produces = "application/json")
+//    public ResponseEntity<?> listAllCities()
+//    {
+//        List<City> cities = cityService.findAll();
+//        return  new ResponseEntity<>(cities, HttpStatus.OK);
+//    }
 
-        return new ResponseEntity<>(cities, HttpStatus.OK);
-    }
-
-    @PreAuthorize("permitAll()")
-    @GetMapping(value = "/city/id/{id}", produces = "application/json")
-    public ResponseEntity<?> findCityById(@PathVariable Long id){
-        City city = cityService.getDS(id);
-
-        return new ResponseEntity<>(city, HttpStatus.OK);
-    }
-
-    @PreAuthorize("permitAll()")
-    @GetMapping(value = "/city/name/{name}", produces = "application/json")
-    public ResponseEntity<?> findByCityName(@PathVariable String name){
-        City city = cityService.findByCityName(name);
-
-        return new ResponseEntity<>(city, HttpStatus.OK);
-    }
-
-    @PreAuthorize("permitAll()")
-    @GetMapping(value = "/cities/namelike/{namelike}", produces = "application/json")
-    public ResponseEntity<?> findByNameLike(@PathVariable String namelike){
-        List<City> cities = cityService.findByCityNameContaining(namelike);
-
-        return new ResponseEntity<>(cities, HttpStatus.OK);
-    }
-
-    @PreAuthorize("permitAll()")
-    @GetMapping(value = "/cities/state/{state}", produces = "application/json")
-    public ResponseEntity<?> findByState(@PathVariable String state){
-        String stateUpper = state.toUpperCase();
-        List<City> cities = cityService.findByStateContaining(stateUpper);
-
-        return new ResponseEntity<>(cities, HttpStatus.OK);
-    }
-
-
-    // find by lat and long
-
-    @PreAuthorize("permitAll()")
-    @GetMapping(value = "/coordinates/{lat}/{lon}", produces = "application/json")
-    public ResponseEntity<?> findByLatLong(@PathVariable Double lat, @PathVariable Double lon)
+    /**
+     * /city/{cityid} endpoint
+     * @param id cityid
+     * @return city object matching cityid or throws exception
+     */
+    @GetMapping(value = "/city/{id}", produces = "application/json")
+    public ResponseEntity<?> getCityById(@PathVariable Long id)
     {
-        City city = cityService.findByLatandLon(lat, lon);
-        return new ResponseEntity<>(city, HttpStatus.OK);
+        City c = cityService.findCityById(id);
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
 
+    /**
+     * /allid endpoint
+     * @return list of all City name's and id's
+     */
+    @GetMapping(value = "/allid", produces = "application/json")
+    public ResponseEntity<?> listAllCityIds()
+    {
+        List<CityIdName> myList = cityService.findAllIds();
 
-    // STRETCH
-        // user prefernces
+        return new ResponseEntity<>(myList, HttpStatus.OK);
+    }
+
+    /**
+     * /avg endpoint
+     * @return City with average fields of all cities
+     */
+    @GetMapping(value = "/avg", produces = "application/json")
+    public ResponseEntity<?> getAverageCity()
+    {
+        City c = cityService.findAverageCity();
+
+        return new ResponseEntity<>(c,HttpStatus.OK);
+    }
 }
