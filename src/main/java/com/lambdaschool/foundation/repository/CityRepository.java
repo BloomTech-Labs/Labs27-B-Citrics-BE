@@ -8,15 +8,15 @@ import java.util.List;
 public interface CityRepository extends CrudRepository<City, Long>
 {
 
-    City findByCityName(String name);
+    City findByCity(String city);
 
 
-    List<City> findByCityNameContaining(String cityName);
+    List<City> findByCityContaining(String city);
 
 
-    List<City> findByStateContaining(String state);
+    List<City> findByStatenameContaining(String statename);
 
 
-    City findByLatAndLon(double lat, double lon);
+//    City findByLatAndLon(double lat, double lon);
 
 }

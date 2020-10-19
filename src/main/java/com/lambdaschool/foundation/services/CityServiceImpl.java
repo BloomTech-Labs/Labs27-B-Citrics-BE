@@ -35,32 +35,32 @@ public class CityServiceImpl implements CityService
 
     }
 
-    @Override
-    public City save(City city)
-    {
-        City newCity = new City();
-
-        if (city.getCityid() != 0)
-        {
-            cityRepo.findById(city.getCityid())
-                    .orElseThrow(() -> new ResourceNotFoundException("User id " + city.getCityid() + " not found!"));
-            newCity.setCityid(city.getCityid());
-        }
-
-        newCity.setCityName(city.getCityName());
-        newCity.setState((city.getState()));
-        newCity.setLat(city.getLat());
-        newCity.setLat(city.getLon());
-        newCity.setMedian_age(city.getMedian_age());
-        newCity.setMedian_home_cost(city.getMedian_home_cost());
-        newCity.setMedian_household_income(city.getMedian_household_income());
-        newCity.setMedian_individual_income(city.getMedian_individual_income());
-        newCity.setPopulation(city.getPopulation());
-        newCity.setMedian_rent(city.getMedian_rent());
-
-
-        return cityRepo.save(newCity);
-    }
+//    @Override
+//    public City save(City city)
+//    {
+//        City newCity = new City();
+//
+//        if (city.getCityid() != 0)
+//        {
+//            cityRepo.findById(city.getCityid())
+//                    .orElseThrow(() -> new ResourceNotFoundException("User id " + city.getCityid() + " not found!"));
+//            newCity.setCityid(city.getCityid());
+//        }
+//
+//        newCity.setCityName(city.getCityName());
+//        newCity.setState((city.getState()));
+//        newCity.setLat(city.getLat());
+//        newCity.setLat(city.getLon());
+//        newCity.setMedian_age(city.getMedian_age());
+//        newCity.setMedian_home_cost(city.getMedian_home_cost());
+//        newCity.setMedian_household_income(city.getMedian_household_income());
+//        newCity.setMedian_individual_income(city.getMedian_individual_income());
+//        newCity.setPopulation(city.getPopulation());
+//        newCity.setMedian_rent(city.getMedian_rent());
+//
+//
+//        return cityRepo.save(newCity);
+//    }
 
     @Override
     public City findCityById(Long id)
@@ -72,29 +72,29 @@ public class CityServiceImpl implements CityService
     @Override
     public City findByCityName(String name)
     {
-        return cityRepo.findByCityName(name);
+        return cityRepo.findByCity(name);
     }
 
     @Override
     public List<City> findByCityNameContaining(String cityName)
     {
-        return cityRepo.findByCityNameContaining(cityName);
+        return cityRepo.findByCityContaining(cityName);
     }
 
     @Override
     public List<City> findByStateContaining(String state)
     {
-        return cityRepo.findByStateContaining(state);
+        return cityRepo.findByStatenameContaining(state);
     }
 
-    @Override
-    public City findByLatandLon(double lat, double lon)
-    {
-        return cityRepo.findByLatAndLon(lat, lon);
-    }
+//    @Override
+//    public City findByLatandLon(double lat, double lon)
+//    {
+//        return cityRepo.findByLatAndLon(lat, lon);
+//    }
 
     @Override
-    public City getDS(Long id)
+    public DsApi getDS(Long id)
     {
 
         String api = "http://citrics-ds.eba-jvvvymfn.us-east-1.elasticbeanstalk.com/";
@@ -113,21 +113,7 @@ public class CityServiceImpl implements CityService
 
         DsApi entity = restTemplate.getForObject(requestLong, DsApi.class);
 
-        String[] cityName = entity.getCity().split(",");
-
-        newCity.setCityid(entity.getCity_id());
-        newCity.setCityName(cityName[0]);
-        newCity.setState(cityName[1]);
-        newCity.setCost_of_Living_Index(entity.getCost_of_Living_Index());
-        newCity.setMedian_age(entity.getMedian_age());
-        newCity.setMedian_home_cost(entity.getMedian_home_cost());
-        newCity.setMedian_household_income(entity.getMedian_household_income());
-        newCity.setMedian_individual_income(entity.getMedian_individual_income());
-        newCity.setPopulation(entity.getPopulation());
-        newCity.setMedian_rent(entity.getMedian_rent());
-
-
-        return newCity;
+        return entity;
 
     }
 }

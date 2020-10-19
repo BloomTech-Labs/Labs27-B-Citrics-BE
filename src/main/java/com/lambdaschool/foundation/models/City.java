@@ -1,14 +1,8 @@
 package com.lambdaschool.foundation.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "city")
@@ -17,175 +11,398 @@ public class City extends Auditable
     @Id
     private long city_id;
 
+    private String city;
 
-//    @Column(unique = true)
-    private String cityName;
+    /**
+     * City's state
+     */
+    private String statename;
 
+    /**
+     * City's two letter state abbreviation
+     */
+    private String abbrev;
 
-//    @Column(unique = true)
-    private String state;
+    /**
+     * City's zipcodes
+     */
+    private String ziplist;
 
+    /**
+     * City's timezone
+     */
+    private String timezone;
 
-//    @Column(unique = true)
-    private double lat;
+    /**
+     * City's counties
+     */
+    private String counties;
 
+    /**
+     * City's latitude
+     */
+    private Double latitude;
 
-//    @Column(unique = true)
-    private double lon;
+    /**
+     * City's longitude
+     */
+    private Double longitude;
 
+    /**
+     * City's FIPS
+     */
+    private String FIPS;
 
+    /**
+     * City's GNIS
+     */
+    private String GNIS;
 
+    /**
+     * City's Wikipedia image url
+     */
+    private String wiki_img_url;
 
-    private long population;
-    private double median_age;
-    private long median_household_income;
-    private long median_individual_income;
-    private long median_home_cost;
-    private long median_rent;
-    private double Cost_of_Living_Index;
+    /**
+     * City's website
+     */
+    private String website;
+
+    /**
+     * City's population
+     */
+    private Double pop;
+
+    /**
+     * City's density per square mile
+     */
+    private Double density_mi_sq;
+
+    /**
+     * City's density per square kilometer
+     */
+    private Double density_km_sq;
+
+    /**
+     * City's historical average population
+     */
+//    private PopHistory pop_hist; // done
+
+    /**
+     * City's average age
+     */
+    private Double age;
+
+    /**
+     * City's average household income
+     */
+    private Double household;
+
+    /**
+     * City's average individual income
+     */
+    private Double individual;
+
+    /**
+     * City's historical average income
+     */
+//    private String income_hist; // confused
+
+    /**
+     * City's average house cost
+     */
+    private Double house;
+
+//    /**
+//     * City's historical average home cost
+//     */
+//    private String home_hist;
+
+    /**
+     * City's average rent
+     */
+    private Double rent;
+
+    /**
+     * City's cost of living index
+     */
+    private Double COLI;
+
+    /**
+     * City's ACA status
+     */
+    private String ACA_status;
+
+    /**
+     * City's historical weather
+     */
+//    private WeatherHistory weather_hist;
+
+//    /**
+//     * City's Covid-19 cases
+//     */
+//    private String jhcovid;
 
 
     public City()
     {
     }
 
-    public City(long cityid, String cityName, String state, double lat, double lon, String city, long population, double median_age, long median_household_income, long median_individual_income, long median_home_cost, long median_rent, double cost_of_Living_Index)
+
+    public City(String city, String statename, String abbrev, String ziplist, String timezone, String counties, Double latitude, Double longitude, String FIPS, String GNIS, String wiki_img_url, String website, Double pop, Double density_mi_sq, Double density_km_sq, Double age, Double household, Double individual, Double house, Double rent, Double COLI, String ACA_status)
     {
-        this.city_id = cityid;
-        this.cityName = cityName;
-        this.state = state;
-        this.lat = lat;
-        this.lon = lon;
-        this.population = population;
-        this.median_age = median_age;
-        this.median_household_income = median_household_income;
-        this.median_individual_income = median_individual_income;
-        this.median_home_cost = median_home_cost;
-        this.median_rent = median_rent;
-        this.Cost_of_Living_Index = cost_of_Living_Index;
+        this.city = city;
+        this.statename = statename;
+        this.abbrev = abbrev;
+        this.ziplist = ziplist;
+        this.timezone = timezone;
+        this.counties = counties;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.FIPS = FIPS;
+        this.GNIS = GNIS;
+        this.wiki_img_url = wiki_img_url;
+        this.website = website;
+        this.pop = pop;
+        this.density_mi_sq = density_mi_sq;
+        this.density_km_sq = density_km_sq;
+        this.age = age;
+        this.household = household;
+        this.individual = individual;
+        this.house = house;
+        this.rent = rent;
+        this.COLI = COLI;
+        this.ACA_status = ACA_status;
     }
 
-    public long getCityid()
+
+    public long getCity_id()
     {
         return city_id;
     }
 
-    public void setCityid(long cityid)
+    public void setCity_id(long city_id)
     {
-        this.city_id = cityid;
+        this.city_id = city_id;
     }
 
-    public String getCityName()
+    public String getCity()
     {
-        return cityName;
+        return city;
     }
 
-    public void setCityName(String cityName)
+    public void setCity(String city)
     {
-        this.cityName = cityName;
+        this.city = city;
     }
 
-    public String getState()
+    public String getStatename()
     {
-        return state;
+        return statename;
     }
 
-    public void setState(String state)
+    public void setStatename(String statename)
     {
-        this.state = state;
+        this.statename = statename;
     }
 
-
-    public double getLat()
+    public String getAbbrev()
     {
-        return lat;
+        return abbrev;
     }
 
-    public void setLat(double lat)
+    public void setAbbrev(String abbrev)
     {
-        this.lat = lat;
+        this.abbrev = abbrev;
     }
 
-    public double getLon()
+    public String getZiplist()
     {
-        return lon;
+        return ziplist;
     }
 
-    public void setLon(double lon)
+    public void setZiplist(String ziplist)
     {
-        this.lon = lon;
+        this.ziplist = ziplist;
     }
 
-
-    public long getPopulation()
+    public String getTimezone()
     {
-        return population;
+        return timezone;
     }
 
-    public void setPopulation(long population)
+    public void setTimezone(String timezone)
     {
-        this.population = population;
+        this.timezone = timezone;
     }
 
-    public double getMedian_age()
+    public String getCounties()
     {
-        return median_age;
+        return counties;
     }
 
-    public void setMedian_age(double median_age)
+    public void setCounties(String counties)
     {
-        this.median_age = median_age;
+        this.counties = counties;
     }
 
-    public long getMedian_household_income()
+    public Double getLatitude()
     {
-        return median_household_income;
+        return latitude;
     }
 
-    public void setMedian_household_income(long median_household_income)
+    public void setLatitude(Double latitude)
     {
-        this.median_household_income = median_household_income;
+        this.latitude = latitude;
     }
 
-    public long getMedian_individual_income()
+    public Double getLongitude()
     {
-        return median_individual_income;
+        return longitude;
     }
 
-    public void setMedian_individual_income(long median_individual_income)
+    public void setLongitude(Double longitude)
     {
-        this.median_individual_income = median_individual_income;
+        this.longitude = longitude;
     }
 
-    public long getMedian_home_cost()
+    public String getFIPS()
     {
-        return median_home_cost;
+        return FIPS;
     }
 
-    public void setMedian_home_cost(long median_home_cost)
+    public void setFIPS(String FIPS)
     {
-        this.median_home_cost = median_home_cost;
+        this.FIPS = FIPS;
     }
 
-    public long getMedian_rent()
+    public String getGNIS()
     {
-        return median_rent;
+        return GNIS;
     }
 
-    public void setMedian_rent(long median_rent)
+    public void setGNIS(String GNIS)
     {
-        this.median_rent = median_rent;
+        this.GNIS = GNIS;
     }
 
-    public double getCost_of_Living_Index()
+    public String getWiki_img_url()
     {
-        return Cost_of_Living_Index;
+        return wiki_img_url;
     }
 
-    public void setCost_of_Living_Index(double cost_of_Living_Index)
+    public void setWiki_img_url(String wiki_img_url)
     {
-        Cost_of_Living_Index = cost_of_Living_Index;
+        this.wiki_img_url = wiki_img_url;
     }
 
+    public String getWebsite()
+    {
+        return website;
+    }
 
+    public void setWebsite(String website)
+    {
+        this.website = website;
+    }
+
+    public Double getPop()
+    {
+        return pop;
+    }
+
+    public void setPop(Double pop)
+    {
+        this.pop = pop;
+    }
+
+    public Double getDensity_mi_sq()
+    {
+        return density_mi_sq;
+    }
+
+    public void setDensity_mi_sq(Double density_mi_sq)
+    {
+        this.density_mi_sq = density_mi_sq;
+    }
+
+    public Double getDensity_km_sq()
+    {
+        return density_km_sq;
+    }
+
+    public void setDensity_km_sq(Double density_km_sq)
+    {
+        this.density_km_sq = density_km_sq;
+    }
+
+    public Double getAge()
+    {
+        return age;
+    }
+
+    public void setAge(Double age)
+    {
+        this.age = age;
+    }
+
+    public Double getHousehold()
+    {
+        return household;
+    }
+
+    public void setHousehold(Double household)
+    {
+        this.household = household;
+    }
+
+    public Double getIndividual()
+    {
+        return individual;
+    }
+
+    public void setIndividual(Double individual)
+    {
+        this.individual = individual;
+    }
+
+    public Double getHouse()
+    {
+        return house;
+    }
+
+    public void setHouse(Double house)
+    {
+        this.house = house;
+    }
+
+    public Double getRent()
+    {
+        return rent;
+    }
+
+    public void setRent(Double rent)
+    {
+        this.rent = rent;
+    }
+
+    public Double getCOLI()
+    {
+        return COLI;
+    }
+
+    public void setCOLI(Double COLI)
+    {
+        this.COLI = COLI;
+    }
+
+    public String getACA_status()
+    {
+        return ACA_status;
+    }
+
+    public void setACA_status(String ACA_status)
+    {
+        this.ACA_status = ACA_status;
+    }
 }

@@ -1,6 +1,7 @@
 package com.lambdaschool.foundation.services;
 
 import com.lambdaschool.foundation.models.City;
+import com.lambdaschool.foundation.models.DsApi;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public interface CityService
 {
     List<City> findAll();
 
-    City save(City city);
+//    City save(City city);
 
     City findCityById(Long id);
 
@@ -18,8 +19,8 @@ public interface CityService
 
     List<City> findByStateContaining(String state);
 
-    City findByLatandLon(double lat, double lon);
+//    City findByLatandLon(double lat, double lon);
 
-    City getDS(Long id);
+    DsApi getDS(Long id);
 
 }

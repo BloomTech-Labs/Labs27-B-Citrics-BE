@@ -1,6 +1,7 @@
 package com.lambdaschool.foundation.controllers;
 
 import com.lambdaschool.foundation.models.City;
+import com.lambdaschool.foundation.models.DsApi;
 import com.lambdaschool.foundation.services.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,7 @@ public class CityController {
     @PreAuthorize("permitAll()")
     @GetMapping(value = "/city/id/{id}", produces = "application/json")
     public ResponseEntity<?> findCityById(@PathVariable Long id){
-        City city = cityService.getDS(id);
+        DsApi city = cityService.getDS(id);
 
         return new ResponseEntity<>(city, HttpStatus.OK);
     }
@@ -63,13 +64,13 @@ public class CityController {
 
     // find by lat and long
 
-    @PreAuthorize("permitAll()")
-    @GetMapping(value = "/coordinates/{lat}/{lon}", produces = "application/json")
-    public ResponseEntity<?> findByLatLong(@PathVariable Double lat, @PathVariable Double lon)
-    {
-        City city = cityService.findByLatandLon(lat, lon);
-        return new ResponseEntity<>(city, HttpStatus.OK);
-    }
+//    @PreAuthorize("permitAll()")
+//    @GetMapping(value = "/coordinates/{lat}/{lon}", produces = "application/json")
+//    public ResponseEntity<?> findByLatLong(@PathVariable Double lat, @PathVariable Double lon)
+//    {
+//        City city = cityService.findByLatandLon(lat, lon);
+//        return new ResponseEntity<>(city, HttpStatus.OK);
+//    }
 
 
     // STRETCH
