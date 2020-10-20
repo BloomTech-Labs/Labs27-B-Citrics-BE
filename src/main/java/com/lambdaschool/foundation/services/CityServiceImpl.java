@@ -94,7 +94,7 @@ public class CityServiceImpl implements CityService
 //    }
 
     @Override
-    public DsApi getDS(Long id)
+    public String getDS(Long id)
     {
 
         String api = "http://citrics-ds.eba-jvvvymfn.us-east-1.elasticbeanstalk.com/";
@@ -107,11 +107,7 @@ public class CityServiceImpl implements CityService
         converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
         restTemplate.getMessageConverters().add(converter);
 
-        ParameterizedTypeReference<DsApi> responsetype = new ParameterizedTypeReference<>()
-        {
-        };
-
-        DsApi entity = restTemplate.getForObject(requestLong, DsApi.class);
+        String entity = restTemplate.getForObject(requestLong, String.class);
 
         return entity;
 
