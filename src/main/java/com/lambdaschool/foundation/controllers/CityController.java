@@ -31,7 +31,7 @@ public class CityController {
     @PreAuthorize("permitAll()")
     @GetMapping(value = "/city/id/{id}", produces = "application/json")
     public ResponseEntity<?> findCityById(@PathVariable Long id){
-        DsApi city = cityService.getDS(id);
+        String city = cityService.getDS(id);
 
         return new ResponseEntity<>(city, HttpStatus.OK);
     }

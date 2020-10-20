@@ -21,6 +21,6 @@ public interface CityService
 
 //    City findByLatandLon(double lat, double lon);
 
-    DsApi getDS(Long id);
+    String getDS(Long id);
 
 }
